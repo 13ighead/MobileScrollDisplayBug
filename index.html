@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MobileScrollDisplayBug</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+<body>
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    .main {
+        height: 9999px;
+        background: -webkit-linear-gradient(#FF0000, #ff0, #0ff, #f0f);
+        background: -o-linear-gradient(#FF0000, #ff0, #0ff, #f0f);
+        background: linear-gradient(#FF0000, #ff0, #0ff, #f0f);
+    }
+    .left-btn {
+        position: fixed;
+        left: 20px;
+        top: 200px;
+        display: none;
+    }
+    .right-btn {
+        position: fixed;
+        right: 20px;
+        top: 200px;
+        opacity: 0;
+    }
+    </style>
+    <div class="main">
+        <div class="left-btn">display</div>
+        <div class="right-btn">opacity</div>
+    </div>
+    <script>
+        var leftBtn = document.querySelector('.left-btn');
+        var rightBtn = document.querySelector('.right-btn');
+        window.addEventListener('scroll', function (evt) {
+            var yOffset = window.scrollY;
+            if (yOffset > 400) {
+                leftBtn.style.display = "block";
+                rightBtn.style.opacity = 1;
+            } else {
+                leftBtn.style.display = "none";
+                rightBtn.style.opacity = 0;
+            }
+        });
+    </script>
+</body>
+</html>
